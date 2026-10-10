@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#11110f">
+<title>Glow & Fuel — Personal Tracker</title>
+<style>
+:root{--bg:#11110f;--panel:#1b1b18;--panel2:#242420;--line:#373731;--text:#f3f0e8;--muted:#aaa99f;--accent:#f59e0b;--green:#65c18c;--red:#e87979;--blue:#83b9f2;--radius:18px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.app{max-width:1120px;margin:auto;padding:20px 18px 100px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}.brand{font-size:23px;font-weight:850;letter-spacing:-.8px}.brand span{color:var(--accent)}.date{color:var(--muted);font-size:13px}.top-actions{display:flex;gap:8px;align-items:center}.btn,.mode-btn{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:9px 13px;border-radius:12px}.btn.primary{background:var(--accent);color:#201506;border-color:var(--accent);font-weight:750}.btn.subtle{background:transparent}.hero{display:grid;grid-template-columns:1.4fr .8fr;gap:16px;margin-bottom:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:19px;min-width:0}.eyebrow{text-transform:uppercase;letter-spacing:2px;color:var(--muted);font-size:10px;font-weight:750}.hero h1{font-size:clamp(27px,4vw,40px);line-height:1.1;letter-spacing:-1.4px;margin:10px 0}.hero p{color:var(--muted);margin:0}.progress-ring{width:94px;height:94px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--accent) var(--progress,0%),#34342d 0);position:relative;flex-shrink:0}.progress-ring:before{content:"";position:absolute;inset:8px;border-radius:50%;background:var(--panel)}.progress-ring strong{position:relative;font-size:21px}.hero-right{display:flex;align-items:center;justify-content:space-between;gap:14px}.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 20px}.stat{padding:14px;border-radius:14px;background:var(--panel2);border:1px solid var(--line)}.stat label{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:1.5px}.stat strong{display:block;font-size:24px;margin:4px 0}.stat small{color:var(--muted);font-size:11px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:22px 0 12px}.section-head h2{font-size:18px;margin:0;letter-spacing:-.3px}.section-head p{font-size:12px;color:var(--muted);margin:3px 0 0}.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.task-list{display:grid;gap:9px}.task{display:flex;align-items:center;gap:12px;padding:13px;background:var(--panel2);border:1px solid var(--line);border-radius:14px}.check{appearance:none;width:21px;height:21px;border:1.5px solid #77776b;border-radius:7px;flex-shrink:0;display:grid;place-items:center;margin:0}.check:checked{background:var(--green);border-color:var(--green)}.check:checked:after{content:"✓";font-size:14px;color:#102016;font-weight:900}.task-main{flex:1;min-width:0}.task-title{font-weight:650}.task-meta{color:var(--muted);font-size:12px;margin-top:2px}.task.done .task-title{text-decoration:line-through;color:var(--muted)}.pill{font-size:10px;color:var(--muted);border:1px solid var(--line);padding:4px 7px;border-radius:999px;white-space:nowrap}.food-form,.inline-form{display:flex;gap:8px;flex-wrap:wrap}.field{background:#11110f;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:10px;min-width:0}.field.name{flex:1;min-width:120px}.field.num{width:95px}.food-list{display:grid;gap:8px;margin-top:14px}.food-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.food-row:last-child{border-bottom:0}.food-row .food-name{flex:1}.food-row small{display:block;color:var(--muted);font-size:11px}.food-row strong{white-space:nowrap}.icon-btn{border:0;background:transparent;color:var(--muted);font-size:18px;padding:3px 7px}.macro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}.macro{padding:12px;background:var(--panel2);border-radius:12px}.macro span{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:1px}.macro strong{font-size:19px}.bar{height:5px;background:#393931;border-radius:10px;overflow:hidden;margin-top:7px}.bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:10px}.mode-row{display:flex;gap:7px;flex-wrap:wrap}.mode-btn{font-size:12px;padding:8px 10px}.mode-btn.active{border-color:var(--accent);background:#3a2a12;color:#ffd28a}.reading-item{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.reading-item:last-child{border-bottom:0}.reading-item label{flex:1}.reading-item small{display:block;color:var(--muted);font-size:11px}.empty{color:var(--muted);font-size:13px;padding:14px 0}.habit-tools{display:flex;gap:7px;align-items:center}.footer-note{color:var(--muted);font-size:11px;margin-top:18px}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#151512ed;backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;justify-content:center;gap:6px;padding:9px 12px;z-index:5}.nav-btn{border:0;background:transparent;color:var(--muted);padding:8px 15px;border-radius:12px;font-size:12px}.nav-btn.active{background:#332710;color:#ffc66c}.view{display:none}.view.active{display:block}.notice{font-size:12px;color:var(--muted);line-height:1.5}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.setting-row{display:flex;justify-content:space-between;gap:15px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}.setting-row:last-child{border:0}.setting-row label{font-weight:600}.setting-row small{display:block;color:var(--muted);font-size:12px}.danger{color:var(--red)}@media(max-width:760px){.app{padding:15px 12px 95px}.hero,.layout{grid-template-columns:1fr}.hero-right{min-height:100px}.stat-grid{grid-template-columns:repeat(2,1fr)}.card{padding:15px}.top{align-items:flex-start}.top-actions .btn{padding:8px 9px}.two-col{grid-template-columns:1fr}.bottom-nav{justify-content:space-around;gap:0;padding:7px 3px}.nav-btn{padding:9px 10px}.brand{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div><div class="brand">GLOW <span>&</span> FUEL</div><div class="date" id="todayDate"></div></div>
+    <div class="top-actions"><button class="btn subtle" id="exportBtn">Export</button><button class="btn primary" id="addTaskTop">+ Task</button></div>
+  </header>
+
+  <main id="dashboardView" class="view active">
+    <section class="hero">
+      <div class="card">
+        <div class="eyebrow" id="modeEyebrow">Your day, your pace</div>
+        <h1 id="greeting">Small steps. Stronger you.</h1>
+        <p id="heroCopy">Build consistency, one intentional choice at a time.</p>
+        <div class="mode-row" style="margin-top:18px" id="modeButtons">
+          <button class="mode-btn active" data-mode="normal">● Normal</button><button class="mode-btn" data-mode="tough">◉ Tough</button><button class="mode-btn" data-mode="free-eat">🍕 Free-eat</button><button class="mode-btn" data-mode="day-off">✈ Day off</button>
+        </div>
+      </div>
+      <div class="card hero-right">
+        <div><div class="eyebrow">Today's consistency</div><div style="font-size:28px;font-weight:800;margin:8px 0" id="doneLabel">0 of 0</div><p id="consistencyCopy">Every completed action counts.</p></div>
+        <div class="progress-ring" id="progressRing"><strong id="progressPct">0%</strong></div>
+      </div>
+    </section>
+    <section class="stat-grid">
+      <div class="stat"><label>Calories</label><strong id="calStat">0</strong><small id="calSmall">of 1,800 kcal</small></div>
+      <div class="stat"><label>Protein</label><strong id="proteinStat">0g</strong><small id="proteinSmall">of 120g target</small></div>
+      <div class="stat"><label>Water</label><strong id="waterStat">0</strong><small>glasses logged</small></div>
+      <div class="stat"><label>Steps</label><strong id="stepsStat">0</strong><small>daily movement</small></div>
+    </section>
+    <div class="layout">
+      <section>
+        <div class="section-head"><div><h2>Today's routine</h2><p>Check things off as you go.</p></div><button class="btn" id="addTaskBtn">+ Add</button></div>
+        <div class="card"><div class="task-list" id="taskList"></div><div class="footer-note">Your checklist is saved in this browser automatically.</div></div>
+        <div class="section-head"><div><h2>Daily reading</h2><p>Three short pieces, at your pace.</p></div></div>
+        <div class="card" id="readingCard"></div>
+      </section>
+      <section>
+        <div class="section-head"><div><h2>Fuel log</h2><p>Track meals and daily macros.</p></div></div>
+        <div class="card">
+          <div class="food-form"><input class="field name" id="foodName" placeholder="Food / meal"><input class="field num" id="foodCalories" type="number" min="0" placeholder="kcal"><input class="field num" id="foodProtein" type="number" min="0" placeholder="Protein g"><button class="btn primary" id="addFoodBtn">Add</button></div>
+          <div class="macro-grid">
+            <div class="macro"><span>Carbs</span><strong id="carbsTotal">0g</strong><div class="bar"><i id="carbsBar"></i></div></div>
+            <div class="macro"><span>Fat</span><strong id="fatTotal">0g</strong><div class="bar"><i id="fatBar"></i></div></div>
+            <div class="macro"><span>Fibre</span><strong id="fibreTotal">0g</strong><div class="bar"><i id="fibreBar"></i></div></div>
+          </div>
+          <div class="food-list" id="foodList"></div>
+          <div class="inline-form" style="margin-top:12px"><button class="btn" id="waterBtn">+ Water</button><button class="btn" id="stepsBtn">Update steps</button></div>
+        </div>
+        <div class="section-head"><div><h2>Targets</h2><p>Adjust them to suit your plan.</p></div></div>
+        <div class="card">
+          <div class="setting-row"><div><label>Calories</label><small>Daily energy target</small></div><input class="field num" id="targetCalories" type="number" min="0" value="1800"></div>
+          <div class="setting-row"><div><label>Protein</label><small>Daily protein target (g)</small></div><input class="field num" id="targetProtein" type="number" min="0" value="120"></div>
+          <button class="btn primary" id="saveTargets" style="margin-top:13px">Save targets</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <main id="progressView" class="view">
+    <div class="section-head"><div><h2>Progress & consistency</h2><p>Your recent daily check-ins.</p></div></div>
+    <div class="card">
+      <div class="stat-grid" style="margin-top:0"><div class="stat"><label>Current streak</label><strong id="streakStat">0</strong><small>days with a completed task</small></div><div class="stat"><label>Tasks today</label><strong id="progressTasks">0%</strong><small>completion rate</small></div><div class="stat"><label>Food entries</label><strong id="foodEntriesStat">0</strong><small>logged today</small></div><div class="stat"><label>Water</label><strong id="progressWater">0</strong><small>glasses today</small></div></div>
+      <h3 style="margin-top:24px">Last 7 days</h3><div id="weekChart" style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end;min-height:150px"></div>
+      <p class="notice">Progress is calculated from the daily records saved in this browser. Export a backup regularly if you want to keep a copy.</p>
+    </div>
+  </main>
+
+  <main id="settingsView" class="view">
+    <div class="section-head"><div><h2>Settings & backup</h2><p>Your app, your routine.</p></div></div>
+    <div class="card">
+      <div class="setting-row"><div><label>Display name</label><small>Used for your daily greeting</small></div><input class="field" id="displayName" placeholder="Your name" style="width:150px"></div>
+      <div class="setting-row"><div><label>Reset today's checklist</label><small>Uncheck all routine tasks for today</small></div><button class="btn" id="resetTasks">Reset tasks</button></div>
+      <div class="setting-row"><div><label>Export all data</label><small>Download a JSON backup</small></div><button class="btn" id="exportSettings">Export backup</button></div>
+      <div class="setting-row"><div><label>Import backup</label><small>Restore from a previous JSON export</small></div><label class="btn" for="importFile">Choose file</label><input id="importFile" type="file" accept="application/json,.json" hidden></div>
+      <div class="setting-row"><div><label>Clear all local data</label><small>Cannot be undone; export first</small></div><button class="btn danger" id="clearData">Clear data</button></div>
+    </div>
+    <div class="card" style="margin-top:14px"><h3 style="margin-top:0">About storage</h3><p class="notice">This starter app stores data locally in the browser on the device you use. It does not send your routine or nutrition data to a server. Your phone and computer will have separate data unless you export and import a backup. For automatic sync, we can add a private cloud database later.</p></div>
+  </main>
+</div>
+<nav class="bottom-nav"><button class="nav-btn active" data-view="dashboard">◫ &nbsp;Today</button><button class="nav-btn" data-view="progress">↗ &nbsp;Progress</button><button class="nav-btn" data-view="settings">⚙ &nbsp;Settings</button></nav>
+<script>
+const STORE='glowFuelPersonal_v1';
+const defaultTasks=[
+ {id:'wake',title:'Wake up · phone-free 30 min',category:'Mindset',time:'Start of day'},
+ {id:'water',title:'Water + morning reset',category:'Care',time:'Morning'},
+ {id:'care',title:'Skincare & hair care',category:'Care',time:'Morning'},
+ {id:'ready',title:'Prepare for the day',category:'Routine',time:'Before work'},
+ {id:'reading',title:'Daily reading: Quran + Nahj al-Balagha + hadith',category:'Spiritual',time:'Reading'},
+ {id:'move',title:'Workout or intentional movement',category:'Movement',time:'Movement'},
+ {id:'fuel',title:'Plan meals & protein',category:'Nutrition',time:'Fuel'},
+ {id:'night',title:'Wind down · prepare for sleep',category:'Sleep',time:'End of day'}
+];
+const defaultReading=[
+ {id:'quran',title:'Ayah of the Quran',detail:'Read, reflect, and note one takeaway'},
+ {id:'nahj',title:'Nahj al-Balagha · Letter 17',detail:'Arabic + translation, if available'},
+ {id:'hadith',title:'Usul al-Kafi · selected hadith',detail:'Read slowly and reflect'}
+];
+function todayKey(d=new Date()){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function blankDay(){return {done:{},foods:[],water:0,steps:0,mode:'normal',reading:{},targets:{calories:1800,protein:120},carbs:0,fat:0,fibre:0}}
+function load(){try{return JSON.parse(localStorage.getItem(STORE))||{profile:{name:''},tasks:defaultTasks,readingItems:defaultReading,days:{}}}catch(e){return {profile:{name:''},tasks:defaultTasks,readingItems:defaultReading,days:{}}}}
+let state=load(); state.profile ||= {name:''}; state.tasks ||= defaultTasks; state.readingItems ||= defaultReading; state.days ||= {};
+function day(){const k=todayKey(); if(!state.days[k])state.days[k]=blankDay();let d=state.days[k];d.done||={};d.foods||=[];d.reading||={};d.targets||={calories:1800,protein:120};return d}
+function save(){localStorage.setItem(STORE,JSON.stringify(state));render()}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function totals(){return day().foods.reduce((a,f)=>({cal:a.cal+Number(f.cal||0),protein:a.protein+Number(f.protein||0),carbs:a.carbs+Number(f.carbs||0),fat:a.fat+Number(f.fat||0),fibre:a.fibre+Number(f.fibre||0)}),{cal:0,protein:0,carbs:0,fat:0,fibre:0})}
+function render(){
+ const d=day(), t=totals(), tasks=state.tasks, done=tasks.filter(x=>d.done[x.id]).length, pct=tasks.length?Math.round(done/tasks.length*100):0;
+ document.getElementById('todayDate').textContent=new Date().toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric',year:'numeric'});
+ document.getElementById('greeting').textContent=(state.profile.name?'Good day, '+state.profile.name+'.':'Small steps. Stronger you.');
+ document.getElementById('heroCopy').textContent=d.mode==='day-off'?'Routine paused. Rest is part of the plan.':d.mode==='tough'?'Keep it simple. Focus on the next useful action.':d.mode==='free-eat'?'Enjoy your food mindfully; one day does not define progress.':'Build consistency, one intentional choice at a time.';
+ document.getElementById('modeEyebrow').textContent=d.mode==='day-off'?'Rest & reset':'Your day, your pace';
+ document.getElementById('doneLabel').textContent=done+' of '+tasks.length+' tasks';document.getElementById('progressPct').textContent=pct+'%';document.getElementById('progressRing').style.setProperty('--progress',pct+'%');document.getElementById('consistencyCopy').textContent=pct===100?'You showed up for yourself.':(tasks.length-done)+' tasks left today.';
+ document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===d.mode));
+ document.getElementById('taskList').innerHTML=tasks.length?tasks.map(x=>`<label class="task ${d.done[x.id]?'done':''}"><input class="check task-check" type="checkbox" data-id="${esc(x.id)}" ${d.done[x.id]?'checked':''}><div class="task-main"><div class="task-title">${esc(x.title)}</div><div class="task-meta">${esc(x.time||x.category||'Routine')}</div></div><span class="pill">${esc(x.category||'Routine')}</span><button type="button" class="icon-btn delete-task" data-id="${esc(x.id)}" aria-label="Delete task">×</button></label>`).join(''):'<div class="empty">No tasks yet. Add one to get started.</div>';
+ document.getElementById('readingCard').innerHTML=state.readingItems.map(x=>`<div class="reading-item"><input class="check reading-check" type="checkbox" data-id="${esc(x.id)}" ${d.reading[x.id]?'checked':''}><label>${esc(x.title)}<small>${esc(x.detail||'')}</small></label></div>`).join('')||'<div class="empty">Add your reading pieces in a future update.</div>';
+ document.getElementById('calStat').textContent=Math.round(t.cal).toLocaleString();document.getElementById('calSmall').textContent='of '+Number(d.targets.calories||1800).toLocaleString()+' kcal';document.getElementById('proteinStat').textContent=Math.round(t.protein)+'g';document.getElementById('proteinSmall').textContent='of '+Number(d.targets.protein||120)+'g target';document.getElementById('waterStat').textContent=d.water;document.getElementById('stepsStat').textContent=Number(d.steps||0).toLocaleString();
+ ['carbs','fat','fibre'].forEach(k=>{document.getElementById(k+'Total').textContent=Math.round(t[k])+'g';document.getElementById(k+'Bar').style.width=Math.min(100,t[k]/(k==='carbs'?150:k==='fat'?55:30)*100)+'%'});
+ document.getElementById('foodList').innerHTML=d.foods.length?d.foods.map(f=>`<div class="food-row"><div class="food-name">${esc(f.name)}<small>${Math.round(f.protein||0)}g protein${f.carbs?' · '+Math.round(f.carbs)+'g carbs':''}${f.fat?' · '+Math.round(f.fat)+'g fat':''}${f.fibre?' · '+Math.round(f.fibre)+'g fibre':''}</small></div><strong>${Math.round(f.cal||0)} kcal</strong><button class="icon-btn delete-food" data-id="${esc(f.id)}" aria-label="Remove food">×</button></div>`).join(''):'<div class="empty">No food logged yet. Add your first meal above.</div>';
+ document.getElementById('targetCalories').value=d.targets.calories||1800;document.getElementById('targetProtein').value=d.targets.protein||120;document.getElementById('displayName').value=state.profile.name||'';
+ const keys=Object.keys(state.days).sort();let streak=0;for(let i=0;i<keys.length;i++){let dt=new Date();dt.setDate(dt.getDate()-i);let rec=state.days[todayKey(dt)];if(rec&&Object.values(rec.done||{}).some(Boolean))streak++;else if(i>0)break}
+ document.getElementById('streakStat').textContent=streak;document.getElementById('progressTasks').textContent=pct+'%';document.getElementById('foodEntriesStat').textContent=d.foods.length;document.getElementById('progressWater').textContent=d.water;
+ const chart=document.getElementById('weekChart');chart.innerHTML='';for(let i=6;i>=0;i--){let dt=new Date();dt.setDate(dt.getDate()-i);let rec=state.days[todayKey(dt)];let p=rec&&state.tasks.length?Math.round(state.tasks.filter(x=>rec.done&&rec.done[x.id]).length/state.tasks.length*100):0;let cell=document.createElement('div');cell.style.cssText='display:flex;flex-direction:column;align-items:center;gap:7px;height:135px;justify-content:flex-end';cell.innerHTML=`<span style="font-size:11px;color:var(--muted)">${p}%</span><div style="height:${Math.max(4,p)}%;width:100%;max-width:35px;background:${p?'var(--accent)':'#393931'};border-radius:7px 7px 3px 3px;min-height:4px"></div><span style="font-size:10px;color:var(--muted)">${dt.toLocaleDateString(undefined,{weekday:'short'}).slice(0,2)}</span>`;chart.appendChild(cell)}
+}
+function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='glow-fuel-backup-'+todayKey()+'.json';a.click();URL.revokeObjectURL(a.href)}
+document.getElementById('taskList').addEventListener('change',e=>{if(e.target.matches('.task-check')){day().done[e.target.dataset.id]=e.target.checked;save()}});
+document.getElementById('taskList').addEventListener('click',e=>{const b=e.target.closest('.delete-task');if(b&&confirm('Delete this task from your routine?')){state.tasks=state.tasks.filter(t=>t.id!==b.dataset.id);save()}});
+document.getElementById('readingCard').addEventListener('change',e=>{if(e.target.matches('.reading-check')){day().reading[e.target.dataset.id]=e.target.checked;save()}});
+document.getElementById('foodList').addEventListener('click',e=>{const b=e.target.closest('.delete-food');if(b){day().foods=day().foods.filter(f=>f.id!==b.dataset.id);save()}});
+function addTask(){const title=prompt('Task name:');if(!title||!title.trim())return;const category=prompt('Category (e.g. Care, Spiritual, Movement):','Routine')||'Routine';state.tasks.push({id:'t'+Date.now(),title:title.trim(),category,time:'Any time'});save()}
+document.getElementById('addTaskBtn').onclick=addTask;document.getElementById('addTaskTop').onclick=addTask;
+document.getElementById('addFoodBtn').onclick=()=>{const name=document.getElementById('foodName').value.trim(),cal=Number(document.getElementById('foodCalories').value),protein=Number(document.getElementById('foodProtein').value);if(!name){alert('Enter a food or meal name first.');return}day().foods.push({id:'f'+Date.now(),name,cal:cal||0,protein:protein||0,carbs:0,fat:0,fibre:0});document.getElementById('foodName').value='';document.getElementById('foodCalories').value='';document.getElementById('foodProtein').value='';save()};
+document.getElementById('waterBtn').onclick=()=>{day().water++;save()};
+document.getElementById('stepsBtn').onclick=()=>{const n=prompt('Enter today’s total steps:',day().steps||0);if(n!==null&&Number.isFinite(Number(n))&&Number(n)>=0){day().steps=Math.floor(Number(n));save()}};
+document.getElementById('modeButtons').onclick=e=>{const b=e.target.closest('[data-mode]');if(b){day().mode=b.dataset.mode;save()}};
+document.getElementById('saveTargets').onclick=()=>{day().targets={calories:Math.max(0,Number(document.getElementById('targetCalories').value)||1800),protein:Math.max(0,Number(document.getElementById('targetProtein').value)||120)};save()};
+document.getElementById('displayName').onchange=e=>{state.profile.name=e.target.value.trim();save()};
+document.getElementById('exportBtn').onclick=exportData;document.getElementById('exportSettings').onclick=exportData;
+document.getElementById('resetTasks').onclick=()=>{if(confirm('Uncheck all routine tasks for today?')){day().done={};save()}};
+document.getElementById('clearData').onclick=()=>{if(confirm('This permanently clears all local app data. Export a backup first. Continue?')){localStorage.removeItem(STORE);state=load();save()}};
+document.getElementById('importFile').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const parsed=JSON.parse(await file.text());if(!parsed.days||!parsed.tasks)throw Error('That file does not look like a Glow & Fuel backup.');if(confirm('Replace current app data with this backup?')){state=parsed;save();alert('Backup restored.')}}catch(err){alert('Could not import this file: '+err.message)}e.target.value=''};
+document.querySelectorAll('.nav-btn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav-btn').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===b.dataset.view+'View'))});
+render();
+</script>
+</body>
+</html>
